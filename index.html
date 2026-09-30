@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Para Ivana</title>
+    <title>Para Ivana ❤️</title>
 
     <style>
         * {
@@ -14,65 +14,99 @@
             padding: 0;
         }
 
-        body {
-            min-height: 100vh;
-            font-family: Georgia, "Times New Roman", serif;
-            background:
-                radial-gradient(circle at 20% 10%, #ffdbe8 0%, transparent 30%),
-                radial-gradient(circle at 80% 90%, #f8b8ce 0%, transparent 35%),
-                linear-gradient(135deg, #fff7fa, #f7d5e1);
-            color: #4a2634;
-            overflow-x: hidden;
+        html {
+            scroll-behavior: smooth;
         }
 
-        /* FONDO */
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            font-family: Georgia, "Times New Roman", serif;
+            color: #4a2634;
+
+            background:
+                radial-gradient(circle at 15% 20%, rgba(255,255,255,.8), transparent 25%),
+                radial-gradient(circle at 85% 80%, rgba(255,190,210,.6), transparent 30%),
+                linear-gradient(135deg, #fff7f9, #f8d8e2 50%, #f4c4d3);
+        }
+
+        /* =====================================
+           FONDO
+        ===================================== */
 
         .fondo {
             position: fixed;
             inset: 0;
-            pointer-events: none;
             overflow: hidden;
+            pointer-events: none;
             z-index: 0;
         }
 
-        .corazon-fondo {
+        .particula {
             position: absolute;
-            color: rgba(215, 70, 116, 0.16);
+            color: rgba(178, 48, 91, .18);
             animation: flotar linear infinite;
         }
 
         @keyframes flotar {
-            from {
+            0% {
                 transform: translateY(110vh) rotate(0deg);
+                opacity: 0;
             }
 
-            to {
+            15% {
+                opacity: 1;
+            }
+
+            85% {
+                opacity: 1;
+            }
+
+            100% {
                 transform: translateY(-120vh) rotate(360deg);
+                opacity: 0;
             }
         }
 
-        /* CONTENEDOR */
+        /* =====================================
+           CONTENEDOR
+        ===================================== */
 
         .contenedor {
             position: relative;
             z-index: 2;
-            width: min(92%, 720px);
+
+            width: min(94%, 850px);
+            min-height: 100vh;
+
             margin: auto;
-            padding: 45px 0;
+            padding: 45px 0 80px;
         }
 
-        /* ENCABEZADO */
+        /* =====================================
+           ENCABEZADO
+        ===================================== */
 
         .encabezado {
             text-align: center;
-            margin-bottom: 35px;
+            animation: aparecer 1.5s ease;
         }
 
-        .corazon {
-            font-size: 65px;
-            color: #d94d78;
-            animation: latido 1.5s infinite;
-            text-shadow: 0 8px 20px rgba(180, 40, 80, .2);
+        .mini-corazon {
+            font-size: 22px;
+            color: #b8325c;
+            letter-spacing: 15px;
+            opacity: .7;
+            margin-bottom: 15px;
+        }
+
+        .corazon-principal {
+            font-size: 72px;
+            color: #c93665;
+
+            filter: drop-shadow(0 8px 15px rgba(130,30,65,.2));
+
+            animation: latido 1.7s ease-in-out infinite;
         }
 
         @keyframes latido {
@@ -87,277 +121,614 @@
 
         .encabezado h1 {
             margin-top: 15px;
-            font-size: clamp(2.4rem, 9vw, 4.5rem);
-            color: #7e2948;
-            letter-spacing: 1px;
+
+            font-size: clamp(2.8rem, 8vw, 5rem);
+
+            color: #762541;
+
+            letter-spacing: 2px;
+
+            text-shadow:
+                0 2px 0 #fff,
+                0 8px 25px rgba(100,30,55,.12);
         }
 
-        .encabezado p {
-            margin-top: 12px;
+        .subtitulo {
+            margin-top: 14px;
+
             font-size: 18px;
-            color: #80566a;
+            color: #795164;
+
+            font-style: italic;
         }
 
-        /* SOBRE */
+        .linea {
+            width: 130px;
+            height: 2px;
+
+            margin: 22px auto;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #bd5274,
+                transparent
+            );
+        }
+
+        /* =====================================
+           SOBRE
+        ===================================== */
 
         .escena {
             display: flex;
             justify-content: center;
-            margin: 35px 0 25px;
-            perspective: 1000px;
+
+            margin: 60px auto 20px;
+
+            perspective: 1400px;
         }
 
         .sobre {
-            width: min(90vw, 470px);
-            height: 300px;
             position: relative;
+
+            width: min(88vw, 520px);
+            height: 330px;
+
             cursor: pointer;
-            transition: transform .4s ease;
+
+            transform-style: preserve-3d;
+
+            transition:
+                transform .5s ease,
+                filter .5s ease;
         }
 
         .sobre:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px) rotateX(2deg);
+            filter: brightness(1.03);
         }
 
-        .base-sobre {
+        /* Base */
+
+        .base {
             position: absolute;
             inset: 0;
-            background: linear-gradient(145deg, #d95a82, #b93462);
-            border-radius: 12px;
-            box-shadow:
-                0 25px 45px rgba(100, 30, 55, .25),
-                inset 0 -8px rgba(90, 20, 45, .1);
-        }
 
-        /* CARTA */
+            border-radius: 15px;
 
-        .carta {
-            position: absolute;
-            width: 88%;
-            height: 245px;
-            left: 6%;
-            bottom: 8px;
-            padding: 28px;
             background:
-                repeating-linear-gradient(
-                    transparent,
-                    transparent 30px,
-                    #eadfe1 31px
-                ),
-                #fffdf8;
-            border-radius: 7px;
-            box-shadow: 0 8px 20px rgba(0,0,0,.18);
-            z-index: 2;
-            transition: transform 1s ease;
+                linear-gradient(
+                    145deg,
+                    #d75a80,
+                    #b93562
+                );
+
+            box-shadow:
+                0 30px 60px rgba(95,25,50,.25),
+                inset 0 -12px 20px rgba(80,15,40,.12);
+
             overflow: hidden;
         }
 
-        .carta::after {
-            content: "♥";
+        /* Detalles del sobre */
+
+        .base::before {
+            content: "";
+
             position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    35deg,
+                    transparent 49%,
+                    rgba(255,255,255,.15) 50%,
+                    transparent 51%
+                ),
+
+                linear-gradient(
+                    -35deg,
+                    transparent 49%,
+                    rgba(255,255,255,.12) 50%,
+                    transparent 51%
+                );
+        }
+
+        /* =====================================
+           CARTA INTERIOR
+        ===================================== */
+
+        .carta {
+            position: absolute;
+
+            left: 6%;
+            bottom: 8px;
+
+            width: 88%;
+            height: 270px;
+
+            padding: 32px;
+
+            background:
+                repeating-linear-gradient(
+                    transparent 0,
+                    transparent 30px,
+                    rgba(145,95,70,.10) 31px
+                ),
+                #fffdf7;
+
+            border: 1px solid #eadbd2;
+            border-radius: 8px;
+
+            box-shadow:
+                0 12px 25px rgba(40,15,20,.18);
+
+            z-index: 2;
+
+            overflow: hidden;
+
+            transition:
+                transform 1.1s cubic-bezier(.2,.8,.2,1);
+        }
+
+        .carta::before {
+            content: "♡";
+
+            position: absolute;
+
             right: 20px;
-            bottom: 15px;
-            color: #e9a0b5;
-            font-size: 25px;
+            bottom: 10px;
+
+            font-size: 35px;
+            color: rgba(185,70,105,.22);
         }
 
         .carta h2 {
-            color: #8a3150;
-            margin-bottom: 18px;
+            color: #82304d;
+
             font-size: 25px;
+
+            margin-bottom: 18px;
         }
 
         .carta p {
             font-size: 16px;
-            line-height: 1.9;
+            line-height: 1.8;
         }
 
-        /* SOLAPA */
+        /* =====================================
+           SOLAPA
+        ===================================== */
 
         .solapa {
             position: absolute;
+
             top: 0;
             left: 0;
-            width: 0;
-            height: 0;
-            border-left: 50% solid transparent;
-            border-right: 50% solid transparent;
-            border-top: 155px solid #a82f59;
-            z-index: 4;
-            transform-origin: top;
-            transition: transform 1s ease;
-        }
 
-        /* CORRECCIÓN DE LA SOLAPA */
-
-        .triangulo {
-            position: absolute;
-            top: 0;
-            left: 0;
             width: 100%;
-            height: 155px;
-            background: #b63863;
-            clip-path: polygon(0 0, 50% 100%, 100% 0);
-            z-index: 4;
+            height: 165px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #c94b72,
+                    #a82e57
+                );
+
+            clip-path: polygon(
+                0 0,
+                50% 100%,
+                100% 0
+            );
+
             transform-origin: top center;
-            transition: transform 1s ease;
+
+            z-index: 5;
+
+            transition:
+                transform 1.1s cubic-bezier(.2,.8,.2,1);
+
+            filter: drop-shadow(
+                0 5px 5px rgba(80,20,40,.12)
+            );
         }
 
-        .sobre.abierto .triangulo {
+        /* =====================================
+           SELLO
+        ===================================== */
+
+        .sello {
+            position: absolute;
+
+            top: 125px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: 64px;
+            height: 64px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    #f6c0d0,
+                    #d96c8d
+                );
+
+            border: 4px solid #ffeaf1;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #8c274b;
+
+            font-size: 28px;
+
+            z-index: 7;
+
+            box-shadow:
+                0 8px 18px rgba(80,20,40,.25);
+
+            transition:
+                opacity .4s,
+                transform .5s;
+        }
+
+        .sello::after {
+            content: "";
+
+            position: absolute;
+            inset: 5px;
+
+            border: 1px solid rgba(130,40,70,.25);
+            border-radius: 50%;
+        }
+
+        /* =====================================
+           SOBRE ABIERTO
+        ===================================== */
+
+        .sobre.abierto .solapa {
             transform: rotateX(180deg);
         }
 
         .sobre.abierto .carta {
-            transform: translateY(-155px);
-        }
-
-        /* SELLO */
-
-        .sello {
-            position: absolute;
-            z-index: 5;
-            top: 118px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 58px;
-            height: 58px;
-            border-radius: 50%;
-            background: #f2b3c7;
-            border: 4px solid #fff0f5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #9a3156;
-            font-size: 25px;
-            box-shadow: 0 5px 12px rgba(80,20,40,.2);
-            transition: opacity .5s;
+            transform: translateY(-175px);
+            z-index: 6;
         }
 
         .sobre.abierto .sello {
             opacity: 0;
+
+            transform:
+                translateX(-50%)
+                scale(.5);
         }
 
-        /* INSTRUCCIÓN */
+        /* =====================================
+           INSTRUCCIÓN
+        ===================================== */
 
         .instruccion {
             text-align: center;
-            color: #80566a;
+
+            margin-top: 35px;
+
+            color: #765064;
+
+            font-size: 16px;
+
             font-style: italic;
-            margin-top: 25px;
+
+            animation:
+                parpadeo 2.5s ease-in-out infinite;
         }
 
-        /* BOTÓN */
+        @keyframes parpadeo {
+            0%, 100% {
+                opacity: .65;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* =====================================
+           BOTÓN
+        ===================================== */
 
         .boton {
             display: block;
-            margin: 25px auto 0;
+
+            margin: 35px auto 0;
+
+            padding: 15px 30px;
+
             border: none;
-            background: #b93462;
+            border-radius: 50px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #c74770,
+                    #9d2d54
+                );
+
             color: white;
-            padding: 14px 25px;
-            border-radius: 30px;
+
+            font-family: Georgia, serif;
             font-size: 16px;
             font-weight: bold;
+
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(140,30,70,.2);
-            transition: .3s;
+
+            box-shadow:
+                0 10px 25px rgba(130,35,70,.25);
+
+            transition:
+                transform .3s,
+                box-shadow .3s;
         }
 
         .boton:hover {
-            background: #8e284c;
-            transform: translateY(-3px);
+            transform: translateY(-4px) scale(1.03);
+
+            box-shadow:
+                0 15px 30px rgba(130,35,70,.35);
         }
 
-        /* MENSAJE FINAL */
+        .boton:active {
+            transform: scale(.97);
+        }
 
-        .mensaje-final {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            text-align: center;
+        /* =====================================
+           MENSAJE
+        ===================================== */
+
+        .mensaje {
+            max-width: 720px;
+
             margin: 0 auto;
-            max-width: 600px;
-            transition: all .8s ease;
+
+            max-height: 0;
+
+            opacity: 0;
+
+            overflow: hidden;
+
+            transform: translateY(20px);
+
+            transition:
+                max-height 1.2s ease,
+                opacity .8s ease,
+                transform .8s ease,
+                margin .8s ease;
         }
 
-        .mensaje-final.visible {
-            max-height: 300px;
+        .mensaje.visible {
+            max-height: 1000px;
+
             opacity: 1;
+
+            transform: translateY(0);
+
+            margin-top: 45px;
+        }
+
+        .papel {
+            position: relative;
+
+            padding: 45px 42px;
+
+            background:
+                linear-gradient(
+                    rgba(255,255,255,.7),
+                    rgba(255,248,238,.9)
+                );
+
+            border: 1px solid #e5c8d0;
+
+            border-radius: 5px;
+
+            box-shadow:
+                0 20px 50px rgba(90,25,50,.12);
+
+            text-align: left;
+        }
+
+        .papel::before,
+        .papel::after {
+            position: absolute;
+
+            font-size: 45px;
+
+            color: rgba(190,70,105,.18);
+        }
+
+        .papel::before {
+            content: "“";
+            top: 8px;
+            left: 18px;
+        }
+
+        .papel::after {
+            content: "”";
+            right: 18px;
+            bottom: -15px;
+        }
+
+        .papel h2 {
+            text-align: center;
+
+            color: #7d2949;
+
+            margin-bottom: 28px;
+
+            font-size: 28px;
+        }
+
+        .papel p {
+            font-size: 18px;
+
+            line-height: 2;
+
+            color: #52333f;
+        }
+
+        .firma {
             margin-top: 30px;
+
+            text-align: right;
+
+            font-size: 21px;
+
+            color: #8c3152;
+
+            font-style: italic;
         }
 
-        .mensaje-final p {
-            background: rgba(255,255,255,.72);
-            border: 1px solid #efc1d0;
-            padding: 22px;
-            border-radius: 20px;
-            line-height: 1.8;
-            box-shadow: 0 10px 30px rgba(100,30,60,.08);
-        }
-
-        /* CORAZONES AL HACER CLIC */
+        /* =====================================
+           CORAZONES AL HACER CLICK
+        ===================================== */
 
         .corazon-volando {
             position: fixed;
+
             pointer-events: none;
+
             z-index: 999;
-            color: #d84270;
-            font-size: 25px;
-            animation: subir 1.7s ease-out forwards;
+
+            color: #c53e69;
+
+            animation:
+                subir 1.8s ease-out forwards;
         }
 
         @keyframes subir {
             0% {
                 opacity: 1;
-                transform: translateY(0) scale(.7);
+
+                transform:
+                    translateY(0)
+                    scale(.5)
+                    rotate(0deg);
             }
 
             100% {
                 opacity: 0;
-                transform: translateY(-220px) scale(1.5) rotate(20deg);
+
+                transform:
+                    translateY(-240px)
+                    scale(1.4)
+                    rotate(25deg);
             }
         }
 
-        /* MÓVIL */
+        /* =====================================
+           ANIMACIÓN DE ENTRADA
+        ===================================== */
 
-        @media (max-width: 500px) {
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(-25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =====================================
+           MÓVIL
+        ===================================== */
+
+        @media (max-width: 600px) {
 
             .contenedor {
                 padding-top: 25px;
             }
 
-            .encabezado h1 {
-                font-size: 2.5rem;
+            .corazon-principal {
+                font-size: 58px;
             }
 
-            .encabezado p {
+            .encabezado h1 {
+                font-size: 2.7rem;
+            }
+
+            .subtitulo {
                 font-size: 16px;
             }
 
             .sobre {
-                height: 250px;
+                width: 92vw;
+                height: 270px;
             }
 
             .carta {
-                height: 205px;
-                padding: 20px;
+                height: 220px;
+                padding: 22px;
+            }
+
+            .carta h2 {
+                font-size: 20px;
             }
 
             .carta p {
                 font-size: 14px;
-                line-height: 1.7;
+                line-height: 1.65;
             }
 
-            .triangulo {
-                height: 130px;
-            }
-
-            .sobre.abierto .carta {
-                transform: translateY(-130px);
+            .solapa {
+                height: 135px;
             }
 
             .sello {
                 top: 98px;
+
+                width: 58px;
+                height: 58px;
+            }
+
+            .sobre.abierto .carta {
+                transform: translateY(-145px);
+            }
+
+            .papel {
+                padding: 32px 24px;
+            }
+
+            .papel h2 {
+                font-size: 23px;
+            }
+
+            .papel p {
+                font-size: 16px;
+                line-height: 1.8;
+            }
+        }
+
+        /* =====================================
+           REDUCIR ANIMACIONES SI EL DISPOSITIVO
+           LO PREFIERE
+        ===================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
             }
         }
     </style>
@@ -365,51 +736,72 @@
 
 <body>
 
-    <!-- CORAZONES DEL FONDO -->
-
+    <!-- FONDO -->
     <div class="fondo" id="fondo"></div>
+
 
     <main class="contenedor">
 
         <!-- ENCABEZADO -->
-
         <header class="encabezado">
 
-            <div class="corazon">♥</div>
+            <div class="mini-corazon">
+                ♥ ♥ ♥
+            </div>
+
+            <div class="corazon-principal">
+                ♥
+            </div>
 
             <h1>Para Ivana</h1>
 
-            <p>
+            <div class="linea"></div>
+
+            <p class="subtitulo">
                 Una pequeña carta para el amor de mi vida
             </p>
 
         </header>
 
-        <!-- SOBRE -->
 
+        <!-- SOBRE -->
         <section class="escena">
 
-            <div class="sobre" id="sobre" onclick="abrirSobre()">
+            <div
+                class="sobre"
+                id="sobre"
+                onclick="abrirSobre()"
+                role="button"
+                tabindex="0"
+                aria-label="Abrir carta"
+            >
 
-                <div class="base-sobre"></div>
+                <div class="base"></div>
 
-                <div class="carta">
+                <!-- CARTA DENTRO DEL SOBRE -->
+                <article class="carta">
 
-                    <h2>Para el amor de mi vida</h2>
+                    <h2>
+                        Para el amor de mi vida
+                    </h2>
 
                     <p>
                         Ivana, no sabes lo mucho que te amo
                         y lo mucho que deseo que estés a mi lado.
                     </p>
 
+                    <br>
+
                     <p>
                         Quiero seguir creando recuerdos contigo.
                     </p>
 
-                </div>
+                </article>
 
-                <div class="triangulo"></div>
+                <!-- SOLAPA -->
+                <div class="solapa"></div>
 
+                <!-- SELLO -->
                 <div class="sello">
                     ♥
                 </div>
@@ -418,77 +810,123 @@
 
         </section>
 
+
         <p class="instruccion">
             Haz clic en el sobre para abrir mi carta
         </p>
 
-        <button class="boton" onclick="mostrarMensaje()">
-            Leer todo mi mensaje
+
+        <!-- BOTÓN -->
+        <button
+            class="boton"
+            id="botonMensaje"
+            onclick="mostrarMensaje()"
+        >
+            Leer mi mensaje completo
         </button>
 
+
         <!-- MENSAJE COMPLETO -->
+        <section
+            class="mensaje"
+            id="mensaje"
+        >
 
-        <section class="mensaje-final" id="mensajeFinal">
+            <article class="papel">
 
-            <p>
-                Ivana, no sabes lo mucho que te amo y lo que
-                deseo que estés a mi lado.
+                <h2>
+                    Para Ivana
+                </h2>
 
-                <br><br>
+                <p>
+                    Ivana, no sabes lo mucho que te amo
+                    y lo que deseo que estés a mi lado.
+                </p>
 
-                Quiero seguir creando recuerdos contigo.
-                No hay palabras que describan lo maravillosa,
-                talentosa, magnífica, hermosa, preciosa y guapa
-                que eres.
+                <br>
 
-                <br><br>
+                <p>
+                    Quiero seguir creando recuerdos contigo.
+                    No hay palabras que describan lo maravillosa,
+                    talentosa, magnífica, hermosa, preciosa y
+                    guapa que eres.
+                </p>
 
-                Te amo mucho y espero que te guste
-                mi pequeño gesto de amor.
+                <br>
 
-                <br><br>
+                <p>
+                    Te amo mucho y espero que te guste
+                    mi pequeño gesto de amor.
+                </p>
 
-                ♥ Siempre para ti ♥
-            </p>
+                <div class="firma">
+                    Con todo mi amor ♥
+                </div>
+
+            </article>
 
         </section>
 
     </main>
 
+
     <script>
 
-        const sobre = document.getElementById("sobre");
-        const mensajeFinal = document.getElementById("mensajeFinal");
-        const fondo = document.getElementById("fondo");
+        const sobre =
+            document.getElementById("sobre");
 
-        /* CORAZONES DEL FONDO */
+        const mensaje =
+            document.getElementById("mensaje");
+
+        const botonMensaje =
+            document.getElementById("botonMensaje");
+
+        const fondo =
+            document.getElementById("fondo");
+
+
+        /* =====================================
+           CREAR PARTÍCULAS DEL FONDO
+        ===================================== */
 
         function crearFondo() {
 
-            for (let i = 0; i < 18; i++) {
+            const cantidad =
+                window.innerWidth < 600 ? 14 : 25;
 
-                const corazon = document.createElement("div");
+            for (let i = 0; i < cantidad; i++) {
 
-                corazon.className = "corazon-fondo";
-                corazon.textContent = "♥";
+                const particula =
+                    document.createElement("div");
 
-                corazon.style.left =
+                particula.className =
+                    "particula";
+
+                particula.textContent =
+                    Math.random() > .25
+                        ? "♥"
+                        : "♡";
+
+                particula.style.left =
                     Math.random() * 100 + "%";
 
-                corazon.style.fontSize =
-                    15 + Math.random() * 25 + "px";
+                particula.style.fontSize =
+                    12 + Math.random() * 25 + "px";
 
-                corazon.style.animationDuration =
-                    8 + Math.random() * 12 + "s";
+                particula.style.animationDuration =
+                    9 + Math.random() * 14 + "s";
 
-                corazon.style.animationDelay =
-                    Math.random() * 10 + "s";
+                particula.style.animationDelay =
+                    Math.random() * 12 + "s";
 
-                fondo.appendChild(corazon);
+                fondo.appendChild(particula);
             }
         }
 
-        /* ABRIR SOBRE */
+
+        /* =====================================
+           ABRIR SOBRE
+        ===================================== */
 
         function abrirSobre() {
 
@@ -498,21 +936,68 @@
 
         }
 
-        /* MENSAJE COMPLETO */
+
+        /* =====================================
+           TECLADO
+        ===================================== */
+
+        sobre.addEventListener("keydown", function(event) {
+
+            if (
+                event.key === "Enter" ||
+                event.key === " "
+            ) {
+
+                event.preventDefault();
+
+                abrirSobre();
+            }
+
+        });
+
+
+        /* =====================================
+           MOSTRAR MENSAJE
+        ===================================== */
 
         function mostrarMensaje() {
 
-            mensajeFinal.classList.toggle("visible");
+            const visible =
+                mensaje.classList.toggle("visible");
+
+            if (visible) {
+
+                botonMensaje.textContent =
+                    "Ocultar mi mensaje";
+
+                setTimeout(() => {
+
+                    mensaje.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+
+                }, 300);
+
+            } else {
+
+                botonMensaje.textContent =
+                    "Leer mi mensaje completo";
+            }
 
             crearCorazones();
-
         }
 
-        /* CORAZONES AL HACER CLIC */
+
+        /* =====================================
+           CORAZONES AL HACER CLICK
+        ===================================== */
 
         function crearCorazones() {
 
-            for (let i = 0; i < 12; i++) {
+            const cantidad = 14;
+
+            for (let i = 0; i < cantidad; i++) {
 
                 setTimeout(() => {
 
@@ -523,30 +1008,38 @@
                         "corazon-volando";
 
                     corazon.textContent =
-                        Math.random() > .5 ? "♥" : "♡";
+                        Math.random() > .5
+                            ? "♥"
+                            : "♡";
 
                     corazon.style.left =
                         Math.random() * 100 + "vw";
 
                     corazon.style.bottom =
-                        "15%";
+                        10 + Math.random() * 20 + "vh";
 
                     corazon.style.fontSize =
-                        18 + Math.random() * 25 + "px";
+                        18 + Math.random() * 28 + "px";
+
+                    corazon.style.animationDuration =
+                        1.3 + Math.random() * .8 + "s";
 
                     document.body.appendChild(corazon);
 
                     setTimeout(() => {
+
                         corazon.remove();
-                    }, 1800);
+
+                    }, 2200);
 
                 }, i * 80);
-
             }
-
         }
 
-        /* INICIAR */
+
+        /* =====================================
+           INICIAR
+        ===================================== */
 
         crearFondo();
 
