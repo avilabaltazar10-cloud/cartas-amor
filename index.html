@@ -1,17 +1,23 @@
 ```html
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Para Ivana ❤️</title>
+    <title>Ivana | Mi pequeña carta</title>
 
     <style>
+
+        /* =====================================================
+           CONFIGURACIÓN
+        ===================================================== */
+
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         html {
@@ -21,36 +27,53 @@
         body {
             min-height: 100vh;
             overflow-x: hidden;
-            font-family: Georgia, "Times New Roman", serif;
-            color: #4a2634;
+
+            font-family: Arial, Helvetica, sans-serif;
 
             background:
-                radial-gradient(circle at 15% 20%, rgba(255,255,255,.8), transparent 25%),
-                radial-gradient(circle at 85% 80%, rgba(255,190,210,.6), transparent 30%),
-                linear-gradient(135deg, #fff7f9, #f8d8e2 50%, #f4c4d3);
+                radial-gradient(circle at 50% -10%, #8c4cff 0%, transparent 35%),
+                radial-gradient(circle at 0% 100%, #ff4b72 0%, transparent 30%),
+                radial-gradient(circle at 100% 100%, #ff9f2e 0%, transparent 30%),
+                linear-gradient(135deg, #12052b, #29104d 45%, #120522);
+
+            color: white;
         }
 
-        /* =====================================
-           FONDO
-        ===================================== */
 
-        .fondo {
+        /* =====================================================
+           FONDO
+        ===================================================== */
+
+        .background {
             position: fixed;
             inset: 0;
+
             overflow: hidden;
+
             pointer-events: none;
+
             z-index: 0;
         }
 
-        .particula {
+
+        .star {
             position: absolute;
-            color: rgba(178, 48, 91, .18);
-            animation: flotar linear infinite;
+
+            color: rgba(255,255,255,.65);
+
+            animation:
+                floatStar linear infinite;
         }
 
-        @keyframes flotar {
+
+        @keyframes floatStar {
+
             0% {
-                transform: translateY(110vh) rotate(0deg);
+                transform:
+                    translateY(110vh)
+                    rotate(0deg)
+                    scale(.5);
+
                 opacity: 0;
             }
 
@@ -63,346 +86,687 @@
             }
 
             100% {
-                transform: translateY(-120vh) rotate(360deg);
+                transform:
+                    translateY(-120vh)
+                    rotate(360deg)
+                    scale(1.3);
+
                 opacity: 0;
             }
         }
 
-        /* =====================================
-           CONTENEDOR
-        ===================================== */
 
-        .contenedor {
+        /* =====================================================
+           BRILLOS
+        ===================================================== */
+
+        .glow {
+            position: fixed;
+
+            width: 350px;
+            height: 350px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 45, 105, .13);
+
+            filter: blur(80px);
+
+            pointer-events: none;
+
+            z-index: 0;
+        }
+
+        .glow.one {
+            top: 10%;
+            left: -150px;
+        }
+
+        .glow.two {
+            bottom: 5%;
+            right: -150px;
+
+            background: rgba(255, 180, 50, .12);
+        }
+
+
+        /* =====================================================
+           CONTENEDOR
+        ===================================================== */
+
+        .container {
             position: relative;
+
             z-index: 2;
 
-            width: min(94%, 850px);
-            min-height: 100vh;
+            width: min(94%, 1000px);
 
             margin: auto;
-            padding: 45px 0 80px;
+
+            padding:
+                50px 0 100px;
         }
 
-        /* =====================================
-           ENCABEZADO
-        ===================================== */
 
-        .encabezado {
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        header {
             text-align: center;
-            animation: aparecer 1.5s ease;
+
+            animation:
+                headerAppear 1.2s ease;
         }
 
-        .mini-corazon {
-            font-size: 22px;
-            color: #b8325c;
-            letter-spacing: 15px;
-            opacity: .7;
-            margin-bottom: 15px;
-        }
 
-        .corazon-principal {
-            font-size: 72px;
-            color: #c93665;
+        @keyframes headerAppear {
 
-            filter: drop-shadow(0 8px 15px rgba(130,30,65,.2));
-
-            animation: latido 1.7s ease-in-out infinite;
-        }
-
-        @keyframes latido {
-            0%, 100% {
-                transform: scale(1);
+            from {
+                opacity: 0;
+                transform:
+                    translateY(-35px);
             }
 
-            50% {
-                transform: scale(1.12);
+            to {
+                opacity: 1;
+                transform:
+                    translateY(0);
             }
         }
 
-        .encabezado h1 {
-            margin-top: 15px;
 
-            font-size: clamp(2.8rem, 8vw, 5rem);
+        .brawl-title {
 
-            color: #762541;
+            display: inline-block;
+
+            font-size:
+                clamp(3rem, 10vw, 6.5rem);
+
+            font-weight: 1000;
+
+            letter-spacing: -4px;
+
+            color: white;
+
+            -webkit-text-stroke:
+                4px #241044;
+
+            text-shadow:
+
+                0 5px 0 #6d27c9,
+
+                0 10px 0 #43178a,
+
+                0 18px 25px
+                rgba(0,0,0,.45);
+        }
+
+
+        .subtitle {
+
+            margin-top: 10px;
+
+            font-size: 18px;
+
+            color: #ffd86b;
+
+            font-weight: 800;
 
             letter-spacing: 2px;
 
-            text-shadow:
-                0 2px 0 #fff,
-                0 8px 25px rgba(100,30,55,.12);
+            text-transform: uppercase;
         }
 
-        .subtitulo {
-            margin-top: 14px;
 
-            font-size: 18px;
-            color: #795164;
+        .pink-line {
 
-            font-style: italic;
+            width: 180px;
+
+            height: 5px;
+
+            margin: 20px auto;
+
+            border-radius: 50px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ff3f72,
+                    #ffd447,
+                    #ff3f72
+                );
+
+            box-shadow:
+                0 0 20px
+                rgba(255,70,120,.5);
         }
 
-        .linea {
-            width: 130px;
-            height: 2px;
 
-            margin: 22px auto;
+        /* =====================================================
+           CARD SUPERIOR
+        ===================================================== */
 
-            background: linear-gradient(
-                90deg,
-                transparent,
-                #bd5274,
-                transparent
-            );
+        .player-card {
+
+            width: min(92vw, 650px);
+
+            margin: 35px auto 0;
+
+            padding: 12px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffd642,
+                    #ff8e24
+                );
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,.35);
+
+            transform:
+                rotate(-1deg);
+
+            transition:
+                transform .4s ease;
         }
 
-        /* =====================================
-           SOBRE
-        ===================================== */
 
-        .escena {
+        .player-card:hover {
+            transform:
+                rotate(0deg)
+                translateY(-5px);
+        }
+
+
+        .player-inner {
+
             display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+
+            padding: 18px;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #24104a,
+                    #41186f
+                );
+
+            border:
+                3px solid
+                rgba(255,255,255,.2);
+        }
+
+
+        .avatar {
+
+            width: 75px;
+            height: 75px;
+
+            flex-shrink: 0;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff4d73,
+                    #7137ff
+                );
+
+            display: flex;
+
+            align-items: center;
             justify-content: center;
 
-            margin: 60px auto 20px;
+            font-size: 38px;
 
-            perspective: 1400px;
+            border:
+                4px solid white;
+
+            box-shadow:
+                0 7px 20px
+                rgba(0,0,0,.3);
         }
 
-        .sobre {
+
+        .player-info {
+            text-align: left;
+        }
+
+
+        .player-info small {
+            color: #bda9d9;
+            font-weight: bold;
+        }
+
+
+        .player-info h2 {
+
+            font-size: 25px;
+
+            margin-top: 3px;
+
+            color: white;
+        }
+
+
+        .player-info span {
+
+            display: inline-block;
+
+            margin-top: 7px;
+
+            padding:
+                5px 12px;
+
+            border-radius: 20px;
+
+            background:
+                rgba(255,255,255,.1);
+
+            color: #ffd65b;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        /* =====================================================
+           ZONA DEL SOBRE
+        ===================================================== */
+
+        .envelope-area {
+
             position: relative;
 
-            width: min(88vw, 520px);
-            height: 330px;
+            width: 100%;
+
+            height: 570px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: flex-end;
+
+            margin-top: 60px;
+
+            perspective: 1600px;
+        }
+
+
+        /* =====================================================
+           SOBRE
+        ===================================================== */
+
+        .envelope {
+
+            position: relative;
+
+            width: min(88vw, 560px);
+
+            height: 340px;
 
             cursor: pointer;
 
             transform-style: preserve-3d;
 
             transition:
-                transform .5s ease,
-                filter .5s ease;
+                transform .5s ease;
         }
 
-        .sobre:hover {
-            transform: translateY(-8px) rotateX(2deg);
-            filter: brightness(1.03);
+
+        .envelope:hover {
+
+            transform:
+                translateY(-8px)
+                rotateX(2deg);
         }
 
-        /* Base */
 
-        .base {
+        /* =====================================================
+           BASE DEL SOBRE
+        ===================================================== */
+
+        .envelope-back {
+
             position: absolute;
+
             inset: 0;
 
-            border-radius: 15px;
+            border-radius: 22px;
 
             background:
                 linear-gradient(
                     145deg,
-                    #d75a80,
-                    #b93562
+                    #ef3971,
+                    #a71951
                 );
 
             box-shadow:
-                0 30px 60px rgba(95,25,50,.25),
-                inset 0 -12px 20px rgba(80,15,40,.12);
+
+                0 35px 60px
+                rgba(0,0,0,.45),
+
+                inset 0 -15px 20px
+                rgba(0,0,0,.15);
 
             overflow: hidden;
         }
 
-        /* Detalles del sobre */
 
-        .base::before {
+        /* patrón */
+
+        .envelope-back::before {
+
             content: "";
 
             position: absolute;
+
             inset: 0;
 
-            background:
-                linear-gradient(
-                    35deg,
-                    transparent 49%,
-                    rgba(255,255,255,.15) 50%,
-                    transparent 51%
-                ),
+            opacity: .18;
 
-                linear-gradient(
-                    -35deg,
-                    transparent 49%,
-                    rgba(255,255,255,.12) 50%,
-                    transparent 51%
+            background-image:
+                radial-gradient(
+                    circle,
+                    white 2px,
+                    transparent 3px
                 );
+
+            background-size:
+                25px 25px;
         }
 
-        /* =====================================
-           CARTA INTERIOR
-        ===================================== */
 
-        .carta {
+        /* =====================================================
+           CARTA QUE SALE DEL SOBRE
+        ===================================================== */
+
+        .letter {
+
             position: absolute;
 
             left: 6%;
-            bottom: 8px;
+
+            bottom: 15px;
 
             width: 88%;
-            height: 270px;
 
-            padding: 32px;
+            height: 280px;
+
+            padding: 30px;
+
+            border-radius: 14px;
 
             background:
-                repeating-linear-gradient(
-                    transparent 0,
-                    transparent 30px,
-                    rgba(145,95,70,.10) 31px
-                ),
-                #fffdf7;
 
-            border: 1px solid #eadbd2;
-            border-radius: 8px;
+                linear-gradient(
+                    rgba(255,255,255,.92),
+                    rgba(255,247,226,.97)
+                );
+
+            color: #381b45;
 
             box-shadow:
-                0 12px 25px rgba(40,15,20,.18);
+                0 15px 35px
+                rgba(0,0,0,.3);
 
             z-index: 2;
 
-            overflow: hidden;
-
             transition:
-                transform 1.1s cubic-bezier(.2,.8,.2,1);
+                transform 1.2s
+                cubic-bezier(.17,.67,.22,1.2);
+
+            overflow: hidden;
         }
 
-        .carta::before {
-            content: "♡";
+
+        /* borde de carta */
+
+        .letter::before {
+
+            content: "";
 
             position: absolute;
 
-            right: 20px;
-            bottom: 10px;
+            inset: 10px;
 
-            font-size: 35px;
-            color: rgba(185,70,105,.22);
+            border:
+                2px dashed
+                rgba(190,60,95,.25);
+
+            border-radius: 8px;
+
+            pointer-events: none;
         }
 
-        .carta h2 {
-            color: #82304d;
+
+        .letter-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            text-align: center;
+        }
+
+
+        .letter h3 {
+
+            color: #a32452;
+
+            font-family:
+                Georgia,
+                serif;
 
             font-size: 25px;
 
             margin-bottom: 18px;
         }
 
-        .carta p {
+
+        .letter p {
+
+            font-family:
+                Georgia,
+                serif;
+
             font-size: 16px;
-            line-height: 1.8;
+
+            line-height: 1.7;
         }
 
-        /* =====================================
-           SOLAPA
-        ===================================== */
 
-        .solapa {
+        .letter-decoration {
+
+            position: absolute;
+
+            font-size: 55px;
+
+            color:
+                rgba(220,40,90,.12);
+        }
+
+
+        .letter-decoration.left {
+
+            bottom: -15px;
+            left: 15px;
+        }
+
+
+        .letter-decoration.right {
+
+            top: -10px;
+            right: 15px;
+        }
+
+
+        /* =====================================================
+           SOLAPA
+        ===================================================== */
+
+        .flap {
+
             position: absolute;
 
             top: 0;
             left: 0;
 
             width: 100%;
-            height: 165px;
+
+            height: 190px;
+
+            z-index: 6;
+
+            transform-origin:
+                top center;
+
+            transform-style:
+                preserve-3d;
+
+            transition:
+                transform 1.1s
+                cubic-bezier(.2,.8,.2,1);
+        }
+
+
+        .flap-front {
+
+            position: absolute;
+
+            inset: 0;
 
             background:
                 linear-gradient(
                     145deg,
-                    #c94b72,
-                    #a82e57
+                    #d92c65,
+                    #a6194b
                 );
 
-            clip-path: polygon(
-                0 0,
-                50% 100%,
-                100% 0
-            );
+            clip-path:
+                polygon(
+                    0 0,
+                    50% 100%,
+                    100% 0
+                );
 
-            transform-origin: top center;
-
-            z-index: 5;
-
-            transition:
-                transform 1.1s cubic-bezier(.2,.8,.2,1);
-
-            filter: drop-shadow(
-                0 5px 5px rgba(80,20,40,.12)
-            );
+            backface-visibility:
+                hidden;
         }
 
-        /* =====================================
-           SELLO
-        ===================================== */
 
-        .sello {
+        .flap-back {
+
             position: absolute;
 
-            top: 125px;
+            inset: 0;
+
+            background:
+                #8d1741;
+
+            clip-path:
+                polygon(
+                    0 0,
+                    50% 100%,
+                    100% 0
+                );
+
+            transform:
+                rotateX(180deg);
+
+            backface-visibility:
+                hidden;
+        }
+
+
+        /* =====================================================
+           SELLO
+        ===================================================== */
+
+        .seal {
+
+            position: absolute;
+
             left: 50%;
 
-            transform: translateX(-50%);
+            top: 135px;
 
-            width: 64px;
-            height: 64px;
+            transform:
+                translateX(-50%);
+
+            width: 75px;
+            height: 75px;
 
             border-radius: 50%;
+
+            z-index: 8;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
 
             background:
                 radial-gradient(
-                    circle,
-                    #f6c0d0,
-                    #d96c8d
+                    circle at 35% 30%,
+                    #ffdb61,
+                    #ed8524
                 );
 
-            border: 4px solid #ffeaf1;
+            border:
+                5px solid #fff0b1;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            color: white;
 
-            color: #8c274b;
+            font-size: 35px;
 
-            font-size: 28px;
-
-            z-index: 7;
+            text-shadow:
+                0 2px 4px rgba(0,0,0,.3);
 
             box-shadow:
-                0 8px 18px rgba(80,20,40,.25);
+                0 8px 25px
+                rgba(0,0,0,.4);
 
             transition:
-                opacity .4s,
+                opacity .5s,
                 transform .5s;
         }
 
-        .sello::after {
-            content: "";
 
-            position: absolute;
-            inset: 5px;
-
-            border: 1px solid rgba(130,40,70,.25);
-            border-radius: 50%;
-        }
-
-        /* =====================================
+        /* =====================================================
            SOBRE ABIERTO
-        ===================================== */
+        ===================================================== */
 
-        .sobre.abierto .solapa {
-            transform: rotateX(180deg);
+        .envelope.open .flap {
+
+            transform:
+                rotateX(180deg);
         }
 
-        .sobre.abierto .carta {
-            transform: translateY(-175px);
-            z-index: 6;
+
+        .envelope.open .letter {
+
+            transform:
+                translateY(-220px)
+                rotate(-1deg);
         }
 
-        .sobre.abierto .sello {
+
+        .envelope.open .seal {
+
             opacity: 0;
 
             transform:
@@ -410,28 +774,35 @@
                 scale(.5);
         }
 
-        /* =====================================
-           INSTRUCCIÓN
-        ===================================== */
 
-        .instruccion {
+        /* =====================================================
+           INDICACIÓN
+        ===================================================== */
+
+        .instruction {
+
+            position: absolute;
+
+            bottom: -20px;
+
+            left: 0;
+            right: 0;
+
             text-align: center;
 
-            margin-top: 35px;
+            color: #d9c7e9;
 
-            color: #765064;
-
-            font-size: 16px;
-
-            font-style: italic;
+            font-size: 15px;
 
             animation:
-                parpadeo 2.5s ease-in-out infinite;
+                pulse 2s infinite;
         }
 
-        @keyframes parpadeo {
-            0%, 100% {
-                opacity: .65;
+
+        @keyframes pulse {
+
+            0%,100% {
+                opacity: .5;
             }
 
             50% {
@@ -439,427 +810,644 @@
             }
         }
 
-        /* =====================================
-           BOTÓN
-        ===================================== */
 
-        .boton {
+        /* =====================================================
+           BOTÓN
+        ===================================================== */
+
+        .main-button {
+
             display: block;
 
-            margin: 35px auto 0;
-
-            padding: 15px 30px;
+            margin:
+                45px auto 0;
 
             border: none;
+
+            padding:
+                16px 30px;
+
             border-radius: 50px;
+
+            cursor: pointer;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 900;
 
             background:
                 linear-gradient(
                     135deg,
-                    #c74770,
-                    #9d2d54
+                    #ff3d73,
+                    #b21e61
                 );
 
-            color: white;
-
-            font-family: Georgia, serif;
-            font-size: 16px;
-            font-weight: bold;
-
-            cursor: pointer;
-
             box-shadow:
-                0 10px 25px rgba(130,35,70,.25);
+                0 12px 30px
+                rgba(230,30,90,.35);
 
             transition:
                 transform .3s,
                 box-shadow .3s;
         }
 
-        .boton:hover {
-            transform: translateY(-4px) scale(1.03);
+
+        .main-button:hover {
+
+            transform:
+                translateY(-4px)
+                scale(1.04);
 
             box-shadow:
-                0 15px 30px rgba(130,35,70,.35);
+                0 18px 35px
+                rgba(230,30,90,.5);
         }
 
-        .boton:active {
-            transform: scale(.97);
-        }
 
-        /* =====================================
-           MENSAJE
-        ===================================== */
+        /* =====================================================
+           CARTA GRANDE
+        ===================================================== */
 
-        .mensaje {
-            max-width: 720px;
+        .full-letter {
 
-            margin: 0 auto;
+            max-width: 780px;
+
+            margin:
+                0 auto;
 
             max-height: 0;
 
-            opacity: 0;
-
             overflow: hidden;
 
-            transform: translateY(20px);
+            opacity: 0;
+
+            transform:
+                translateY(40px)
+                scale(.97);
 
             transition:
-                max-height 1.2s ease,
+                max-height 1.4s ease,
                 opacity .8s ease,
                 transform .8s ease,
                 margin .8s ease;
         }
 
-        .mensaje.visible {
-            max-height: 1000px;
+
+        .full-letter.show {
+
+            max-height: 1200px;
 
             opacity: 1;
 
-            transform: translateY(0);
+            margin-top: 60px;
 
-            margin-top: 45px;
+            transform:
+                translateY(0)
+                scale(1);
         }
 
-        .papel {
+
+        .letter-paper {
+
             position: relative;
 
-            padding: 45px 42px;
+            padding:
+                55px 55px;
+
+            color: #3c2032;
 
             background:
+
+                radial-gradient(
+                    circle at top right,
+                    rgba(255,220,120,.25),
+                    transparent 25%
+                ),
+
                 linear-gradient(
-                    rgba(255,255,255,.7),
-                    rgba(255,248,238,.9)
+                    135deg,
+                    #fffdf4,
+                    #f7ead0
                 );
 
-            border: 1px solid #e5c8d0;
+            border-radius: 10px;
 
-            border-radius: 5px;
+            border:
+                5px solid #e3b54a;
 
             box-shadow:
-                0 20px 50px rgba(90,25,50,.12);
 
-            text-align: left;
+                0 25px 70px
+                rgba(0,0,0,.45),
+
+                inset 0 0 40px
+                rgba(190,130,40,.08);
         }
 
-        .papel::before,
-        .papel::after {
+
+        .letter-paper::before {
+
+            content: "★";
+
             position: absolute;
 
-            font-size: 45px;
+            top: 12px;
+            left: 20px;
 
-            color: rgba(190,70,105,.18);
+            font-size: 35px;
+
+            color: #e4ae28;
+
+            opacity: .5;
         }
 
-        .papel::before {
-            content: "“";
-            top: 8px;
-            left: 18px;
+
+        .letter-paper::after {
+
+            content: "★";
+
+            position: absolute;
+
+            bottom: 12px;
+            right: 20px;
+
+            font-size: 35px;
+
+            color: #e4ae28;
+
+            opacity: .5;
         }
 
-        .papel::after {
-            content: "”";
-            right: 18px;
-            bottom: -15px;
-        }
 
-        .papel h2 {
+        .letter-paper h2 {
+
             text-align: center;
 
-            color: #7d2949;
+            color: #8c2450;
 
-            margin-bottom: 28px;
+            font-family:
+                Georgia,
+                serif;
 
-            font-size: 28px;
+            font-size:
+                clamp(2rem, 5vw, 3rem);
+
+            margin-bottom: 35px;
         }
 
-        .papel p {
-            font-size: 18px;
+
+        .letter-paper .divider {
+
+            width: 100px;
+
+            height: 3px;
+
+            margin:
+                0 auto 30px;
+
+            background:
+                #d5a72e;
+
+            border-radius: 50px;
+        }
+
+
+        .letter-paper p {
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 19px;
 
             line-height: 2;
 
-            color: #52333f;
+            margin-bottom: 20px;
         }
 
-        .firma {
-            margin-top: 30px;
+
+        .signature {
+
+            margin-top: 35px;
 
             text-align: right;
 
-            font-size: 21px;
+            font-family:
+                Georgia,
+                serif;
 
-            color: #8c3152;
+            font-size: 24px;
+
+            color: #9b2b55;
 
             font-style: italic;
         }
 
-        /* =====================================
-           CORAZONES AL HACER CLICK
-        ===================================== */
 
-        .corazon-volando {
+        /* =====================================================
+           BRAWL BADGES
+        ===================================================== */
+
+        .badges {
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 12px;
+
+            margin-top: 25px;
+        }
+
+
+        .badge {
+
+            padding:
+                8px 15px;
+
+            border-radius: 50px;
+
+            background:
+                rgba(255,255,255,.08);
+
+            border:
+                1px solid
+                rgba(255,255,255,.15);
+
+            color: #e9dcf6;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        /* =====================================================
+           CORAZONES
+        ===================================================== */
+
+        .flying-heart {
+
             position: fixed;
 
             pointer-events: none;
 
-            z-index: 999;
+            z-index: 9999;
 
-            color: #c53e69;
+            font-size: 25px;
 
             animation:
-                subir 1.8s ease-out forwards;
+                heartUp 1.8s
+                ease-out forwards;
         }
 
-        @keyframes subir {
+
+        @keyframes heartUp {
+
             0% {
+
                 opacity: 1;
 
                 transform:
                     translateY(0)
                     scale(.5)
-                    rotate(0deg);
+                    rotate(0);
             }
 
             100% {
+
                 opacity: 0;
 
                 transform:
-                    translateY(-240px)
-                    scale(1.4)
-                    rotate(25deg);
+                    translateY(-280px)
+                    scale(1.5)
+                    rotate(30deg);
             }
         }
 
-        /* =====================================
-           ANIMACIÓN DE ENTRADA
-        ===================================== */
 
-        @keyframes aparecer {
-            from {
-                opacity: 0;
-                transform: translateY(-25px);
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media(max-width: 600px) {
+
+            .container {
+                padding-top: 30px;
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+            .brawl-title {
+                -webkit-text-stroke:
+                    2px #241044;
 
-        /* =====================================
-           MÓVIL
-        ===================================== */
-
-        @media (max-width: 600px) {
-
-            .contenedor {
-                padding-top: 25px;
+                letter-spacing:
+                    -2px;
             }
 
-            .corazon-principal {
-                font-size: 58px;
+            .player-inner {
+                padding: 12px;
             }
 
-            .encabezado h1 {
-                font-size: 2.7rem;
+            .avatar {
+                width: 58px;
+                height: 58px;
+
+                font-size: 28px;
             }
 
-            .subtitulo {
-                font-size: 16px;
-            }
-
-            .sobre {
-                width: 92vw;
-                height: 270px;
-            }
-
-            .carta {
-                height: 220px;
-                padding: 22px;
-            }
-
-            .carta h2 {
+            .player-info h2 {
                 font-size: 20px;
             }
 
-            .carta p {
+            .envelope-area {
+                height: 500px;
+            }
+
+            .envelope {
+                height: 280px;
+            }
+
+            .letter {
+                height: 235px;
+                padding: 22px;
+            }
+
+            .letter h3 {
+                font-size: 20px;
+            }
+
+            .letter p {
                 font-size: 14px;
-                line-height: 1.65;
             }
 
-            .solapa {
-                height: 135px;
+            .flap {
+                height: 155px;
             }
 
-            .sello {
-                top: 98px;
+            .seal {
+                top: 108px;
 
-                width: 58px;
-                height: 58px;
+                width: 62px;
+                height: 62px;
+
+                font-size: 28px;
             }
 
-            .sobre.abierto .carta {
-                transform: translateY(-145px);
+            .envelope.open .letter {
+                transform:
+                    translateY(-185px)
+                    rotate(-1deg);
             }
 
-            .papel {
-                padding: 32px 24px;
+            .letter-paper {
+                padding:
+                    35px 25px;
             }
 
-            .papel h2 {
-                font-size: 23px;
-            }
-
-            .papel p {
-                font-size: 16px;
+            .letter-paper p {
+                font-size: 17px;
                 line-height: 1.8;
             }
         }
 
-        /* =====================================
-           REDUCIR ANIMACIONES SI EL DISPOSITIVO
-           LO PREFIERE
-        ===================================== */
-
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: .01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: .01ms !important;
-            }
-        }
     </style>
 </head>
 
+
 <body>
 
-    <!-- FONDO -->
-    <div class="fondo" id="fondo"></div>
+
+    <!-- =====================================================
+         FONDO
+    ====================================================== -->
+
+    <div class="background" id="background"></div>
+
+    <div class="glow one"></div>
+    <div class="glow two"></div>
 
 
-    <main class="contenedor">
+    <main class="container">
 
-        <!-- ENCABEZADO -->
-        <header class="encabezado">
 
-            <div class="mini-corazon">
-                ♥ ♥ ♥
+        <!-- =================================================
+             ENCABEZADO
+        ================================================== -->
+
+        <header>
+
+            <div class="brawl-title">
+                BRAWL
             </div>
 
-            <div class="corazon-principal">
-                ♥
+            <div class="subtitle">
+                Una carta especial
             </div>
 
-            <h1>Para Ivana</h1>
-
-            <div class="linea"></div>
-
-            <p class="subtitulo">
-                Una pequeña carta para el amor de mi vida
-            </p>
+            <div class="pink-line"></div>
 
         </header>
 
 
-        <!-- SOBRE -->
-        <section class="escena">
+        <!-- =================================================
+             TARJETA
+        ================================================== -->
 
-            <div
-                class="sobre"
-                id="sobre"
-                onclick="abrirSobre()"
-                role="button"
-                tabindex="0"
-                aria-label="Abrir carta"
-            >
+        <div class="player-card">
 
-                <div class="base"></div>
+            <div class="player-inner">
 
-                <!-- CARTA DENTRO DEL SOBRE -->
-                <article class="carta">
+                <div class="avatar">
+                    ♥
+                </div>
+
+                <div class="player-info">
+
+                    <small>
+                        CARTA ESPECIAL
+                    </small>
 
                     <h2>
-                        Para el amor de mi vida
+                        Para Ivana
                     </h2>
 
-                    <p>
-                        Ivana, no sabes lo mucho que te amo
-                        y lo mucho que deseo que estés a mi lado.
-                    </p>
+                    <span>
+                        MI PERSONA FAVORITA
+                    </span>
 
-                    <br>
-
-                    <p>
-                        Quiero seguir creando recuerdos contigo.
-                    </p>
-
-                </article>
-
-                <!-- SOLAPA -->
-                <div class="solapa"></div>
-
-                <!-- SELLO -->
-                <div class="sello">
-                    ♥
                 </div>
 
             </div>
 
+        </div>
+
+
+        <!-- =================================================
+             SOBRE
+        ================================================== -->
+
+        <section class="envelope-area">
+
+
+            <div
+                class="envelope"
+                id="envelope"
+                onclick="openEnvelope()"
+                tabindex="0"
+                role="button"
+                aria-label="Abrir carta"
+            >
+
+
+                <!-- PARTE TRASERA -->
+
+                <div class="envelope-back"></div>
+
+
+                <!-- CARTA INTERNA -->
+
+                <div class="letter">
+
+                    <div class="letter-decoration left">
+                        ★
+                    </div>
+
+                    <div class="letter-decoration right">
+                        ♥
+                    </div>
+
+                    <div class="letter-content">
+
+                        <h3>
+                            Para el amor de mi vida
+                        </h3>
+
+                        <p>
+                            Tengo algo que quiero decirte...
+                        </p>
+
+                        <br>
+
+                        <p>
+                            Abre esta carta.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SOLAPA -->
+
+                <div class="flap">
+
+                    <div class="flap-front"></div>
+
+                    <div class="flap-back"></div>
+
+                </div>
+
+
+                <!-- SELLO -->
+
+                <div class="seal">
+                    ★
+                </div>
+
+
+            </div>
+
+
+            <div class="instruction">
+                Toca el sobre para abrir la carta
+            </div>
+
+
         </section>
 
 
-        <p class="instruccion">
-            Haz clic en el sobre para abrir mi carta
-        </p>
+        <!-- =================================================
+             BOTÓN
+        ================================================== -->
 
-
-        <!-- BOTÓN -->
         <button
-            class="boton"
-            id="botonMensaje"
-            onclick="mostrarMensaje()"
+            class="main-button"
+            id="mainButton"
+            onclick="showLetter()"
         >
-            Leer mi mensaje completo
+            ABRIR MI MENSAJE
         </button>
 
 
-        <!-- MENSAJE COMPLETO -->
+        <!-- =================================================
+             BADGES
+        ================================================== -->
+
+        <div class="badges">
+
+            <div class="badge">
+                ★ CARTA ESPECIAL
+            </div>
+
+            <div class="badge">
+                ♥ PARA IVANA
+            </div>
+
+            <div class="badge">
+                ✦ CON TODO MI AMOR
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             CARTA COMPLETA
+        ================================================== -->
+
         <section
-            class="mensaje"
-            id="mensaje"
+            class="full-letter"
+            id="fullLetter"
         >
 
-            <article class="papel">
+            <article class="letter-paper">
 
                 <h2>
                     Para Ivana
                 </h2>
+
+                <div class="divider"></div>
+
 
                 <p>
                     Ivana, no sabes lo mucho que te amo
                     y lo que deseo que estés a mi lado.
                 </p>
 
-                <br>
 
                 <p>
                     Quiero seguir creando recuerdos contigo.
-                    No hay palabras que describan lo maravillosa,
-                    talentosa, magnífica, hermosa, preciosa y
-                    guapa que eres.
                 </p>
 
-                <br>
+
+                <p>
+                    No hay palabras que describan lo
+                    maravillosa, talentosa, magnífica,
+                    hermosa, preciosa y guapa que eres.
+                </p>
+
 
                 <p>
                     Te amo mucho y espero que te guste
                     mi pequeño gesto de amor.
                 </p>
 
-                <div class="firma">
+
+                <div class="signature">
                     Con todo mi amor ♥
                 </div>
 
@@ -867,184 +1455,238 @@
 
         </section>
 
+
     </main>
 
 
     <script>
 
-        const sobre =
-            document.getElementById("sobre");
 
-        const mensaje =
-            document.getElementById("mensaje");
+        /* =====================================================
+           ELEMENTOS
+        ====================================================== */
 
-        const botonMensaje =
-            document.getElementById("botonMensaje");
+        const envelope =
+            document.getElementById("envelope");
 
-        const fondo =
-            document.getElementById("fondo");
+        const fullLetter =
+            document.getElementById("fullLetter");
 
+        const mainButton =
+            document.getElementById("mainButton");
 
-        /* =====================================
-           CREAR PARTÍCULAS DEL FONDO
-        ===================================== */
-
-        function crearFondo() {
-
-            const cantidad =
-                window.innerWidth < 600 ? 14 : 25;
-
-            for (let i = 0; i < cantidad; i++) {
-
-                const particula =
-                    document.createElement("div");
-
-                particula.className =
-                    "particula";
-
-                particula.textContent =
-                    Math.random() > .25
-                        ? "♥"
-                        : "♡";
-
-                particula.style.left =
-                    Math.random() * 100 + "%";
-
-                particula.style.fontSize =
-                    12 + Math.random() * 25 + "px";
-
-                particula.style.animationDuration =
-                    9 + Math.random() * 14 + "s";
-
-                particula.style.animationDelay =
-                    Math.random() * 12 + "s";
-
-                fondo.appendChild(particula);
-            }
-        }
+        const background =
+            document.getElementById("background");
 
 
-        /* =====================================
-           ABRIR SOBRE
-        ===================================== */
+        /* =====================================================
+           FONDO
+        ====================================================== */
 
-        function abrirSobre() {
+        function createStars() {
 
-            sobre.classList.toggle("abierto");
+            const amount =
+                window.innerWidth < 600
+                    ? 18
+                    : 35;
 
-            crearCorazones();
 
-        }
-
-
-        /* =====================================
-           TECLADO
-        ===================================== */
-
-        sobre.addEventListener("keydown", function(event) {
-
-            if (
-                event.key === "Enter" ||
-                event.key === " "
+            for (
+                let i = 0;
+                i < amount;
+                i++
             ) {
 
-                event.preventDefault();
+                const star =
+                    document.createElement("div");
 
-                abrirSobre();
+
+                star.className =
+                    "star";
+
+
+                star.textContent =
+                    Math.random() > .3
+                        ? "★"
+                        : "✦";
+
+
+                star.style.left =
+                    Math.random() * 100 + "vw";
+
+
+                star.style.fontSize =
+                    8 +
+                    Math.random() * 20 +
+                    "px";
+
+
+                star.style.animationDuration =
+                    8 +
+                    Math.random() * 14 +
+                    "s";
+
+
+                star.style.animationDelay =
+                    Math.random() * 12 +
+                    "s";
+
+
+                background.appendChild(star);
             }
+        }
 
-        });
+
+        /* =====================================================
+           ABRIR SOBRE
+        ====================================================== */
+
+        function openEnvelope() {
+
+            envelope.classList.toggle("open");
+
+            createHearts();
+
+        }
 
 
-        /* =====================================
-           MOSTRAR MENSAJE
-        ===================================== */
+        /* =====================================================
+           MOSTRAR CARTA
+        ====================================================== */
 
-        function mostrarMensaje() {
+        function showLetter() {
 
-            const visible =
-                mensaje.classList.toggle("visible");
+            const isOpen =
+                fullLetter.classList.toggle("show");
 
-            if (visible) {
 
-                botonMensaje.textContent =
-                    "Ocultar mi mensaje";
+            if (isOpen) {
+
+                mainButton.textContent =
+                    "OCULTAR MENSAJE";
+
 
                 setTimeout(() => {
 
-                    mensaje.scrollIntoView({
+                    fullLetter.scrollIntoView({
                         behavior: "smooth",
                         block: "center"
                     });
 
-                }, 300);
+                }, 350);
 
             } else {
 
-                botonMensaje.textContent =
-                    "Leer mi mensaje completo";
+                mainButton.textContent =
+                    "ABRIR MI MENSAJE";
             }
 
-            crearCorazones();
+
+            createHearts();
         }
 
 
-        /* =====================================
-           CORAZONES AL HACER CLICK
-        ===================================== */
+        /* =====================================================
+           CORAZONES
+        ====================================================== */
 
-        function crearCorazones() {
+        function createHearts() {
 
-            const cantidad = 14;
-
-            for (let i = 0; i < cantidad; i++) {
+            for (
+                let i = 0;
+                i < 16;
+                i++
+            ) {
 
                 setTimeout(() => {
 
-                    const corazon =
+                    const heart =
                         document.createElement("div");
 
-                    corazon.className =
-                        "corazon-volando";
 
-                    corazon.textContent =
+                    heart.className =
+                        "flying-heart";
+
+
+                    heart.textContent =
                         Math.random() > .5
                             ? "♥"
-                            : "♡";
+                            : "★";
 
-                    corazon.style.left =
-                        Math.random() * 100 + "vw";
 
-                    corazon.style.bottom =
-                        10 + Math.random() * 20 + "vh";
+                    heart.style.left =
+                        Math.random() * 100 +
+                        "vw";
 
-                    corazon.style.fontSize =
-                        18 + Math.random() * 28 + "px";
 
-                    corazon.style.animationDuration =
-                        1.3 + Math.random() * .8 + "s";
+                    heart.style.bottom =
+                        10 +
+                        Math.random() * 20 +
+                        "vh";
 
-                    document.body.appendChild(corazon);
+
+                    heart.style.fontSize =
+                        18 +
+                        Math.random() * 28 +
+                        "px";
+
+
+                    heart.style.animationDuration =
+                        1.3 +
+                        Math.random() * .9 +
+                        "s";
+
+
+                    document.body.appendChild(
+                        heart
+                    );
+
 
                     setTimeout(() => {
 
-                        corazon.remove();
+                        heart.remove();
 
-                    }, 2200);
+                    }, 2300);
 
-                }, i * 80);
+
+                }, i * 70);
+
             }
+
         }
 
 
-        /* =====================================
-           INICIAR
-        ===================================== */
+        /* =====================================================
+           TECLADO
+        ====================================================== */
 
-        crearFondo();
+        envelope.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key === "Enter" ||
+                    event.key === " "
+                ) {
+
+                    event.preventDefault();
+
+                    openEnvelope();
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           INICIAR
+        ====================================================== */
+
+        createStars();
 
     </script>
 
 </body>
+
 </html>
 ```
