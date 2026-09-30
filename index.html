@@ -1,11 +1,11 @@
-
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cartas para ti</title>
+    <title>Para Ivana</title>
 
     <style>
         * {
@@ -14,58 +14,65 @@
             padding: 0;
         }
 
-        :root {
-            --fondo: #fff3f7;
-            --fondo2: #ffe1eb;
-            --tarjeta: rgba(255, 255, 255, 0.82);
-            --texto: #4b2635;
-            --texto-suave: #805c6b;
-            --rosa: #e85d8e;
-            --rosa-oscuro: #c83e70;
-            --borde: #f1c6d5;
-            --papel: #fffdf8;
-        }
-
-        body.oscuro {
-            --fondo: #21151b;
-            --fondo2: #38202b;
-            --tarjeta: rgba(62, 37, 48, 0.9);
-            --texto: #ffe9f0;
-            --texto-suave: #d5aeba;
-            --rosa: #ef6f9d;
-            --rosa-oscuro: #ff8caf;
-            --borde: #694152;
-            --papel: #fff8fa;
-        }
-
         body {
             min-height: 100vh;
-            font-family: Arial, Helvetica, sans-serif;
-            color: var(--texto);
+            font-family: Georgia, "Times New Roman", serif;
             background:
-                radial-gradient(circle at top left, #ffd6e3 0, transparent 30%),
-                linear-gradient(145deg, var(--fondo), var(--fondo2));
-            transition: 0.3s;
+                radial-gradient(circle at 20% 10%, #ffdbe8 0%, transparent 30%),
+                radial-gradient(circle at 80% 90%, #f8b8ce 0%, transparent 35%),
+                linear-gradient(135deg, #fff7fa, #f7d5e1);
+            color: #4a2634;
             overflow-x: hidden;
         }
 
+        /* FONDO */
+
+        .fondo {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .corazon-fondo {
+            position: absolute;
+            color: rgba(215, 70, 116, 0.16);
+            animation: flotar linear infinite;
+        }
+
+        @keyframes flotar {
+            from {
+                transform: translateY(110vh) rotate(0deg);
+            }
+
+            to {
+                transform: translateY(-120vh) rotate(360deg);
+            }
+        }
+
+        /* CONTENEDOR */
+
         .contenedor {
-            width: min(100% - 28px, 700px);
+            position: relative;
+            z-index: 2;
+            width: min(92%, 720px);
             margin: auto;
-            padding: 25px 0 40px;
+            padding: 45px 0;
         }
 
         /* ENCABEZADO */
 
         .encabezado {
             text-align: center;
-            padding: 20px 10px 25px;
+            margin-bottom: 35px;
         }
 
-        .corazon-principal {
+        .corazon {
             font-size: 65px;
+            color: #d94d78;
             animation: latido 1.5s infinite;
-            filter: drop-shadow(0 8px 15px rgba(200, 62, 112, 0.25));
+            text-shadow: 0 8px 20px rgba(180, 40, 80, .2);
         }
 
         @keyframes latido {
@@ -74,388 +81,283 @@
             }
 
             50% {
-                transform: scale(1.13);
+                transform: scale(1.12);
             }
         }
 
         .encabezado h1 {
-            font-size: clamp(2rem, 9vw, 3.4rem);
-            margin-top: 8px;
+            margin-top: 15px;
+            font-size: clamp(2.4rem, 9vw, 4.5rem);
+            color: #7e2948;
+            letter-spacing: 1px;
         }
 
         .encabezado p {
-            color: var(--texto-suave);
-            margin-top: 10px;
-            line-height: 1.6;
+            margin-top: 12px;
+            font-size: 18px;
+            color: #80566a;
         }
 
-        /* BOTONES */
+        /* SOBRE */
 
-        .barra {
+        .escena {
             display: flex;
-            gap: 10px;
-            margin-bottom: 18px;
-        }
-
-        button {
-            border: none;
-            cursor: pointer;
-            font-size: 15px;
-            font-weight: bold;
-            border-radius: 15px;
-            padding: 13px 16px;
-            min-height: 48px;
-            transition: transform 0.15s, background 0.2s;
-        }
-
-        button:active {
-            transform: scale(0.95);
-        }
-
-        .boton-principal {
-            flex: 1;
-            color: white;
-            background: var(--rosa);
-        }
-
-        .boton-principal:hover {
-            background: var(--rosa-oscuro);
-        }
-
-        .boton-secundario {
-            background: var(--tarjeta);
-            color: var(--texto);
-            border: 1px solid var(--borde);
-        }
-
-        /* BUSCADOR */
-
-        .buscador {
-            margin-bottom: 20px;
-        }
-
-        .buscador input {
-            width: 100%;
-            padding: 15px;
-            border-radius: 15px;
-            border: 1px solid var(--borde);
-            outline: none;
-            background: var(--tarjeta);
-            color: var(--texto);
-            font-size: 16px;
-        }
-
-        .buscador input:focus {
-            border-color: var(--rosa);
-            box-shadow: 0 0 0 3px rgba(232, 93, 142, 0.15);
-        }
-
-        /* CARTAS */
-
-        #listaCartas {
-            display: grid;
-            gap: 14px;
-        }
-
-        .carta {
-            display: flex;
-            align-items: center;
-            gap: 13px;
-            padding: 15px;
-            background: var(--tarjeta);
-            border: 1px solid var(--borde);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 25px rgba(100, 40, 60, 0.06);
-            animation: aparecer 0.35s ease;
-        }
-
-        @keyframes aparecer {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            justify-content: center;
+            margin: 35px 0 25px;
+            perspective: 1000px;
         }
 
         .sobre {
-            width: 62px;
-            height: 50px;
-            flex-shrink: 0;
-            border-radius: 10px;
-            background: linear-gradient(145deg, #f6b8cc, #ed88a8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            box-shadow: inset 0 -4px rgba(180, 50, 90, 0.1);
-        }
-
-        .informacion {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .informacion h3 {
-            font-size: 16px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .informacion p {
-            margin-top: 5px;
-            color: var(--texto-suave);
-            font-size: 13px;
-        }
-
-        .acciones {
-            display: flex;
-            gap: 5px;
-        }
-
-        .abrir {
-            background: var(--rosa);
-            color: white;
-            padding: 10px 12px;
-            min-height: 42px;
-        }
-
-        .borrar {
-            background: transparent;
-            color: #b65b77;
-            padding: 8px;
-            min-height: 42px;
-        }
-
-        .sin-cartas {
-            text-align: center;
-            padding: 35px 15px;
-            border-radius: 20px;
-            background: var(--tarjeta);
-            border: 1px solid var(--borde);
-            color: var(--texto-suave);
-            line-height: 1.6;
-        }
-
-        /* MODALES */
-
-        .modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(38, 17, 26, 0.65);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 18px;
-            z-index: 100;
-        }
-
-        .modal.activo {
-            display: flex;
-            animation: fondo 0.2s ease;
-        }
-
-        @keyframes fondo {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        .ventana {
-            width: min(100%, 520px);
-            max-height: 90vh;
-            overflow-y: auto;
-            background: var(--papel);
-            color: #51313c;
-            border-radius: 25px;
-            padding: 22px;
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
-            animation: abrirVentana 0.35s ease;
-        }
-
-        @keyframes abrirVentana {
-            from {
-                transform: translateY(30px) scale(0.9);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0) scale(1);
-                opacity: 1;
-            }
-        }
-
-        .ventana h2 {
-            text-align: center;
-            font-size: 25px;
-            margin-bottom: 17px;
-        }
-
-        .campo {
-            margin-bottom: 15px;
-        }
-
-        .campo label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 7px;
-        }
-
-        .campo input,
-        .campo textarea {
-            width: 100%;
-            border: 1px solid #e7c9d2;
-            border-radius: 13px;
-            padding: 13px;
-            font-family: inherit;
-            font-size: 16px;
-            outline: none;
-            color: #51313c;
-            background: #fff;
-        }
-
-        .campo textarea {
-            min-height: 180px;
-            resize: vertical;
-        }
-
-        .campo input:focus,
-        .campo textarea:focus {
-            border-color: var(--rosa);
-            box-shadow: 0 0 0 3px rgba(232, 93, 142, 0.15);
-        }
-
-        .botones-modal {
-            display: flex;
-            gap: 10px;
-            margin-top: 18px;
-        }
-
-        .botones-modal button {
-            flex: 1;
-        }
-
-        /* CARTA ABIERTA */
-
-        .carta-abierta {
+            width: min(90vw, 470px);
+            height: 300px;
             position: relative;
+            cursor: pointer;
+            transition: transform .4s ease;
+        }
+
+        .sobre:hover {
+            transform: translateY(-5px);
+        }
+
+        .base-sobre {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(145deg, #d95a82, #b93462);
+            border-radius: 12px;
+            box-shadow:
+                0 25px 45px rgba(100, 30, 55, .25),
+                inset 0 -8px rgba(90, 20, 45, .1);
+        }
+
+        /* CARTA */
+
+        .carta {
+            position: absolute;
+            width: 88%;
+            height: 245px;
+            left: 6%;
+            bottom: 8px;
+            padding: 28px;
             background:
                 repeating-linear-gradient(
                     transparent,
-                    transparent 31px,
-                    #eadadd 32px
+                    transparent 30px,
+                    #eadfe1 31px
                 ),
                 #fffdf8;
-            padding: 25px 20px;
-            border-radius: 10px;
-            min-height: 300px;
+            border-radius: 7px;
+            box-shadow: 0 8px 20px rgba(0,0,0,.18);
+            z-index: 2;
+            transition: transform 1s ease;
+            overflow: hidden;
         }
 
-        .carta-abierta::before {
+        .carta::after {
             content: "♥";
             position: absolute;
-            top: 10px;
-            right: 15px;
-            color: #e89ab1;
-            font-size: 20px;
+            right: 20px;
+            bottom: 15px;
+            color: #e9a0b5;
+            font-size: 25px;
         }
 
-        .carta-abierta h2 {
-            text-align: left;
-            padding-bottom: 10px;
+        .carta h2 {
+            color: #8a3150;
             margin-bottom: 18px;
-            border-bottom: 1px solid #e8ccd4;
+            font-size: 25px;
         }
 
-        .texto-carta {
-            white-space: pre-wrap;
-            line-height: 32px;
+        .carta p {
             font-size: 16px;
+            line-height: 1.9;
         }
 
-        .firma {
-            margin-top: 30px;
-            text-align: right;
+        /* SOLAPA */
+
+        .solapa {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 50% solid transparent;
+            border-right: 50% solid transparent;
+            border-top: 155px solid #a82f59;
+            z-index: 4;
+            transform-origin: top;
+            transition: transform 1s ease;
+        }
+
+        /* CORRECCIÓN DE LA SOLAPA */
+
+        .triangulo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 155px;
+            background: #b63863;
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+            z-index: 4;
+            transform-origin: top center;
+            transition: transform 1s ease;
+        }
+
+        .sobre.abierto .triangulo {
+            transform: rotateX(180deg);
+        }
+
+        .sobre.abierto .carta {
+            transform: translateY(-155px);
+        }
+
+        /* SELLO */
+
+        .sello {
+            position: absolute;
+            z-index: 5;
+            top: 118px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: #f2b3c7;
+            border: 4px solid #fff0f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9a3156;
+            font-size: 25px;
+            box-shadow: 0 5px 12px rgba(80,20,40,.2);
+            transition: opacity .5s;
+        }
+
+        .sobre.abierto .sello {
+            opacity: 0;
+        }
+
+        /* INSTRUCCIÓN */
+
+        .instruccion {
+            text-align: center;
+            color: #80566a;
             font-style: italic;
-            color: #a1536d;
+            margin-top: 25px;
         }
 
-        /* CORAZONES */
+        /* BOTÓN */
 
-        .corazon-flotante {
+        .boton {
+            display: block;
+            margin: 25px auto 0;
+            border: none;
+            background: #b93462;
+            color: white;
+            padding: 14px 25px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(140,30,70,.2);
+            transition: .3s;
+        }
+
+        .boton:hover {
+            background: #8e284c;
+            transform: translateY(-3px);
+        }
+
+        /* MENSAJE FINAL */
+
+        .mensaje-final {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            text-align: center;
+            margin: 0 auto;
+            max-width: 600px;
+            transition: all .8s ease;
+        }
+
+        .mensaje-final.visible {
+            max-height: 300px;
+            opacity: 1;
+            margin-top: 30px;
+        }
+
+        .mensaje-final p {
+            background: rgba(255,255,255,.72);
+            border: 1px solid #efc1d0;
+            padding: 22px;
+            border-radius: 20px;
+            line-height: 1.8;
+            box-shadow: 0 10px 30px rgba(100,30,60,.08);
+        }
+
+        /* CORAZONES AL HACER CLIC */
+
+        .corazon-volando {
             position: fixed;
             pointer-events: none;
             z-index: 999;
+            color: #d84270;
             font-size: 25px;
-            animation: subir 1.3s ease-out forwards;
+            animation: subir 1.7s ease-out forwards;
         }
 
         @keyframes subir {
-            from {
+            0% {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: translateY(0) scale(.7);
             }
 
-            to {
+            100% {
                 opacity: 0;
-                transform: translateY(-160px) scale(1.6);
+                transform: translateY(-220px) scale(1.5) rotate(20deg);
             }
         }
 
-        .contador {
-            text-align: center;
-            margin-top: 25px;
-            color: var(--texto-suave);
-            font-size: 14px;
-        }
-
-        /* CELULAR */
+        /* MÓVIL */
 
         @media (max-width: 500px) {
+
             .contenedor {
-                width: min(100% - 18px, 700px);
-                padding-top: 10px;
+                padding-top: 25px;
             }
 
-            .barra {
-                flex-direction: column;
+            .encabezado h1 {
+                font-size: 2.5rem;
             }
 
-            .carta {
-                padding: 12px;
+            .encabezado p {
+                font-size: 16px;
             }
 
             .sobre {
-                width: 54px;
-                height: 45px;
-                font-size: 24px;
+                height: 250px;
             }
 
-            .abrir {
-                padding: 9px;
-                font-size: 13px;
+            .carta {
+                height: 205px;
+                padding: 20px;
             }
 
-            .borrar {
-                display: none;
+            .carta p {
+                font-size: 14px;
+                line-height: 1.7;
             }
-        }
 
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation: none !important;
-                transition: none !important;
+            .triangulo {
+                height: 130px;
+            }
+
+            .sobre.abierto .carta {
+                transform: translateY(-130px);
+            }
+
+            .sello {
+                top: 98px;
             }
         }
     </style>
@@ -463,707 +365,190 @@
 
 <body>
 
+    <!-- CORAZONES DEL FONDO -->
+
+    <div class="fondo" id="fondo"></div>
+
     <main class="contenedor">
 
-        <header class="encabezado">
-            <div class="corazon-principal">♥</div>
+        <!-- ENCABEZADO -->
 
-            <h1>Cartas para ti</h1>
+        <header class="encabezado">
+
+            <div class="corazon">♥</div>
+
+            <h1>Para Ivana</h1>
 
             <p>
-                Un pequeño lugar para guardar palabras,
-                recuerdos y momentos especiales.
+                Una pequeña carta para el amor de mi vida
             </p>
+
         </header>
 
-        <section class="barra">
-            <button
-                class="boton-principal"
-                id="nuevaCarta">
-                + Escribir una carta
-            </button>
+        <!-- SOBRE -->
 
-            <button
-                class="boton-secundario"
-                id="modoOscuro">
-                ◐
-            </button>
-        </section>
+        <section class="escena">
 
-        <section class="buscador">
-            <input
-                type="search"
-                id="buscar"
-                placeholder="Buscar una carta..."
-                autocomplete="off">
-        </section>
+            <div class="sobre" id="sobre" onclick="abrirSobre()">
 
-        <section id="listaCartas"></section>
+                <div class="base-sobre"></div>
 
-        <div class="contador">
-            <span id="contadorCartas">0 cartas guardadas</span>
-        </div>
+                <div class="carta">
 
-    </main>
+                    <h2>Para el amor de mi vida</h2>
 
+                    <p>
+                        Ivana, no sabes lo mucho que te amo
+                        y lo mucho que deseo que estés a mi lado.
+                    </p>
 
-    <!-- =========================
-         MODAL CREAR CARTA
-    ========================== -->
-
-    <div
-        class="modal"
-        id="modalCrear"
-        role="dialog"
-        aria-modal="true">
-
-        <div class="ventana">
-
-            <h2>Escribe una carta</h2>
-
-            <form id="formCarta">
-
-                <div class="campo">
-                    <label for="titulo">
-                        Título
-                    </label>
-
-                    <input
-                        type="text"
-                        id="titulo"
-                        maxlength="50"
-                        placeholder="Para alguien especial..."
-                        required>
-                </div>
-
-                <div class="campo">
-                    <label for="mensaje">
-                        Tu mensaje
-                    </label>
-
-                    <textarea
-                        id="mensaje"
-                        maxlength="3000"
-                        placeholder="Escribe aquí lo que quieras decir..."
-                        required></textarea>
-                </div>
-
-                <div class="botones-modal">
-
-                    <button
-                        type="button"
-                        class="boton-secundario"
-                        id="cancelar">
-                        Cancelar
-                    </button>
-
-                    <button
-                        type="submit"
-                        class="boton-principal">
-                        Guardar carta
-                    </button>
+                    <p>
+                        Quiero seguir creando recuerdos contigo.
+                    </p>
 
                 </div>
 
-            </form>
+                <div class="triangulo"></div>
 
-        </div>
-
-    </div>
-
-
-    <!-- =========================
-         MODAL LEER CARTA
-    ========================== -->
-
-    <div
-        class="modal"
-        id="modalLeer"
-        role="dialog"
-        aria-modal="true">
-
-        <div class="ventana">
-
-            <div class="carta-abierta">
-
-                <h2 id="tituloCarta"></h2>
-
-                <div
-                    class="texto-carta"
-                    id="textoCarta">
-                </div>
-
-                <div class="firma">
-                    Con cariño ♥
+                <div class="sello">
+                    ♥
                 </div>
 
             </div>
 
-            <button
-                class="boton-principal"
-                id="cerrarCarta"
-                style="width:100%; margin-top:15px;">
-                Cerrar carta
-            </button>
+        </section>
 
-        </div>
+        <p class="instruccion">
+            Haz clic en el sobre para abrir mi carta
+        </p>
 
-    </div>
+        <button class="boton" onclick="mostrarMensaje()">
+            Leer todo mi mensaje
+        </button>
 
+        <!-- MENSAJE COMPLETO -->
+
+        <section class="mensaje-final" id="mensajeFinal">
+
+            <p>
+                Ivana, no sabes lo mucho que te amo y lo que
+                deseo que estés a mi lado.
+
+                <br><br>
+
+                Quiero seguir creando recuerdos contigo.
+                No hay palabras que describan lo maravillosa,
+                talentosa, magnífica, hermosa, preciosa y guapa
+                que eres.
+
+                <br><br>
+
+                Te amo mucho y espero que te guste
+                mi pequeño gesto de amor.
+
+                <br><br>
+
+                ♥ Siempre para ti ♥
+            </p>
+
+        </section>
+
+    </main>
 
     <script>
 
-        /* =====================================
-           DATOS INICIALES
-        ===================================== */
+        const sobre = document.getElementById("sobre");
+        const mensajeFinal = document.getElementById("mensajeFinal");
+        const fondo = document.getElementById("fondo");
 
-        const cartasIniciales = [
-            {
-                id: Date.now(),
-                titulo: "Una pequeña sorpresa",
-                mensaje:
-                    "A veces no hacen falta muchas palabras para decirle a alguien que es especial.\n\nEsta pequeña carta es simplemente un detalle para recordarte que hay momentos que vale la pena guardar."
-            },
-            {
-                id: Date.now() + 1,
-                titulo: "Para un día especial",
-                mensaje:
-                    "Espero que hoy encuentres muchas razones para sonreír.\n\nY si algún día necesitas recordar algo bonito, puedes volver a abrir esta carta."
+        /* CORAZONES DEL FONDO */
+
+        function crearFondo() {
+
+            for (let i = 0; i < 18; i++) {
+
+                const corazon = document.createElement("div");
+
+                corazon.className = "corazon-fondo";
+                corazon.textContent = "♥";
+
+                corazon.style.left =
+                    Math.random() * 100 + "%";
+
+                corazon.style.fontSize =
+                    15 + Math.random() * 25 + "px";
+
+                corazon.style.animationDuration =
+                    8 + Math.random() * 12 + "s";
+
+                corazon.style.animationDelay =
+                    Math.random() * 10 + "s";
+
+                fondo.appendChild(corazon);
             }
-        ];
-
-
-        /* =====================================
-           ELEMENTOS
-        ===================================== */
-
-        const listaCartas =
-            document.getElementById("listaCartas");
-
-        const nuevaCarta =
-            document.getElementById("nuevaCarta");
-
-        const modalCrear =
-            document.getElementById("modalCrear");
-
-        const modalLeer =
-            document.getElementById("modalLeer");
-
-        const formCarta =
-            document.getElementById("formCarta");
-
-        const titulo =
-            document.getElementById("titulo");
-
-        const mensaje =
-            document.getElementById("mensaje");
-
-        const buscar =
-            document.getElementById("buscar");
-
-        const tituloCarta =
-            document.getElementById("tituloCarta");
-
-        const textoCarta =
-            document.getElementById("textoCarta");
-
-        const contadorCartas =
-            document.getElementById("contadorCartas");
-
-
-        /* =====================================
-           CARGAR CARTAS
-        ===================================== */
-
-        let cartas =
-            JSON.parse(localStorage.getItem("cartasAmor"));
-
-        if (!cartas || !Array.isArray(cartas)) {
-            cartas = cartasIniciales;
-
-            guardarCartas();
         }
 
+        /* ABRIR SOBRE */
 
-        /* =====================================
-           GUARDAR
-        ===================================== */
+        function abrirSobre() {
 
-        function guardarCartas() {
-
-            localStorage.setItem(
-                "cartasAmor",
-                JSON.stringify(cartas)
-            );
-        }
-
-
-        /* =====================================
-           MOSTRAR CARTAS
-        ===================================== */
-
-        function mostrarCartas(filtro = "") {
-
-            listaCartas.innerHTML = "";
-
-            const texto =
-                filtro.toLowerCase().trim();
-
-            const resultado =
-                cartas.filter(carta =>
-                    carta.titulo
-                        .toLowerCase()
-                        .includes(texto) ||
-
-                    carta.mensaje
-                        .toLowerCase()
-                        .includes(texto)
-                );
-
-
-            if (resultado.length === 0) {
-
-                listaCartas.innerHTML = `
-                    <div class="sin-cartas">
-                        No encontramos ninguna carta.
-                        <br>
-                        Puedes escribir una nueva.
-                    </div>
-                `;
-
-            } else {
-
-                resultado.forEach(carta => {
-
-                    const elemento =
-                        document.createElement("article");
-
-                    elemento.className = "carta";
-
-                    elemento.innerHTML = `
-                        <div class="sobre">
-                            ✉
-                        </div>
-
-                        <div class="informacion">
-                            <h3></h3>
-                            <p>
-                                Toca abrir para leerla
-                            </p>
-                        </div>
-
-                        <div class="acciones">
-
-                            <button
-                                class="abrir"
-                                type="button">
-                                Abrir
-                            </button>
-
-                            <button
-                                class="borrar"
-                                type="button"
-                                title="Eliminar carta">
-                                ×
-                            </button>
-
-                        </div>
-                    `;
-
-
-                    elemento
-                        .querySelector("h3")
-                        .textContent =
-                        carta.titulo;
-
-
-                    elemento
-                        .querySelector(".abrir")
-                        .addEventListener(
-                            "click",
-                            () => abrirCarta(carta.id)
-                        );
-
-
-                    elemento
-                        .querySelector(".borrar")
-                        .addEventListener(
-                            "click",
-                            () => eliminarCarta(carta.id)
-                        );
-
-
-                    listaCartas.appendChild(elemento);
-
-                });
-
-            }
-
-
-            actualizarContador();
-        }
-
-
-        /* =====================================
-           ABRIR CARTA
-        ===================================== */
-
-        function abrirCarta(id) {
-
-            const carta =
-                cartas.find(c => c.id === id);
-
-            if (!carta) return;
-
-
-            tituloCarta.textContent =
-                carta.titulo;
-
-            textoCarta.textContent =
-                carta.mensaje;
-
-            modalLeer.classList.add("activo");
+            sobre.classList.toggle("abierto");
 
             crearCorazones();
-        }
-
-
-        /* =====================================
-           ELIMINAR CARTA
-        ===================================== */
-
-        function eliminarCarta(id) {
-
-            const confirmar =
-                confirm(
-                    "¿Quieres eliminar esta carta?"
-                );
-
-            if (!confirmar) return;
-
-
-            cartas =
-                cartas.filter(
-                    carta => carta.id !== id
-                );
-
-            guardarCartas();
-
-            mostrarCartas(buscar.value);
-        }
-
-
-        /* =====================================
-           CONTADOR
-        ===================================== */
-
-        function actualizarContador() {
-
-            const cantidad =
-                cartas.length;
-
-            contadorCartas.textContent =
-                cantidad === 1
-                    ? "1 carta guardada"
-                    : `${cantidad} cartas guardadas`;
-        }
-
-
-        /* =====================================
-           NUEVA CARTA
-        ===================================== */
-
-        nuevaCarta.addEventListener(
-            "click",
-            () => {
-
-                formCarta.reset();
-
-                modalCrear.classList.add("activo");
-
-                setTimeout(
-                    () => titulo.focus(),
-                    100
-                );
-
-            }
-        );
-
-
-        /* =====================================
-           CANCELAR
-        ===================================== */
-
-        document
-            .getElementById("cancelar")
-            .addEventListener(
-                "click",
-                () => {
-                    modalCrear.classList.remove(
-                        "activo"
-                    );
-                }
-            );
-
-
-        /* =====================================
-           GUARDAR NUEVA CARTA
-        ===================================== */
-
-        formCarta.addEventListener(
-            "submit",
-            event => {
-
-                event.preventDefault();
-
-
-                const nuevoTitulo =
-                    titulo.value.trim();
-
-                const nuevoMensaje =
-                    mensaje.value.trim();
-
-
-                if (
-                    nuevoTitulo === "" ||
-                    nuevoMensaje === ""
-                ) {
-                    return;
-                }
-
-
-                const nueva = {
-
-                    id:
-                        Date.now(),
-
-                    titulo:
-                        nuevoTitulo,
-
-                    mensaje:
-                        nuevoMensaje
-
-                };
-
-
-                cartas.unshift(nueva);
-
-                guardarCartas();
-
-                mostrarCartas();
-
-                modalCrear.classList.remove(
-                    "activo"
-                );
-
-
-                abrirCarta(nueva.id);
-
-            }
-        );
-
-
-        /* =====================================
-           CERRAR CARTA
-        ===================================== */
-
-        document
-            .getElementById("cerrarCarta")
-            .addEventListener(
-                "click",
-                () => {
-
-                    modalLeer.classList.remove(
-                        "activo"
-                    );
-
-                }
-            );
-
-
-        /* =====================================
-           BUSCADOR
-        ===================================== */
-
-        buscar.addEventListener(
-            "input",
-            () => {
-
-                mostrarCartas(
-                    buscar.value
-                );
-
-            }
-        );
-
-
-        /* =====================================
-           CERRAR MODALES TOCANDO AFUERA
-        ===================================== */
-
-        modalCrear.addEventListener(
-            "click",
-            event => {
-
-                if (
-                    event.target === modalCrear
-                ) {
-                    modalCrear.classList.remove(
-                        "activo"
-                    );
-                }
-
-            }
-        );
-
-
-        modalLeer.addEventListener(
-            "click",
-            event => {
-
-                if (
-                    event.target === modalLeer
-                ) {
-                    modalLeer.classList.remove(
-                        "activo"
-                    );
-                }
-
-            }
-        );
-
-
-        /* =====================================
-           ESCAPE PARA CERRAR
-        ===================================== */
-
-        document.addEventListener(
-            "keydown",
-            event => {
-
-                if (event.key === "Escape") {
-
-                    modalCrear.classList.remove(
-                        "activo"
-                    );
-
-                    modalLeer.classList.remove(
-                        "activo"
-                    );
-
-                }
-
-            }
-        );
-
-
-        /* =====================================
-           MODO OSCURO
-        ===================================== */
-
-        const modoOscuro =
-            document.getElementById("modoOscuro");
-
-
-        modoOscuro.addEventListener(
-            "click",
-            () => {
-
-                document.body.classList.toggle(
-                    "oscuro"
-                );
-
-
-                const oscuro =
-                    document.body.classList.contains(
-                        "oscuro"
-                    );
-
-
-                localStorage.setItem(
-                    "modoOscuro",
-                    oscuro
-                );
-
-            }
-        );
-
-
-        if (
-            localStorage.getItem(
-                "modoOscuro"
-            ) === "true"
-        ) {
-
-            document.body.classList.add(
-                "oscuro"
-            );
 
         }
 
+        /* MENSAJE COMPLETO */
 
-        /* =====================================
-           CORAZONES AL ABRIR
-        ===================================== */
+        function mostrarMensaje() {
+
+            mensajeFinal.classList.toggle("visible");
+
+            crearCorazones();
+
+        }
+
+        /* CORAZONES AL HACER CLIC */
 
         function crearCorazones() {
 
-            for (
-                let i = 0;
-                i < 8;
-                i++
-            ) {
+            for (let i = 0; i < 12; i++) {
 
-                setTimeout(
-                    () => {
+                setTimeout(() => {
 
-                        const corazon =
-                            document.createElement(
-                                "div"
-                            );
+                    const corazon =
+                        document.createElement("div");
 
-                        corazon.className =
-                            "corazon-flotante";
+                    corazon.className =
+                        "corazon-volando";
 
-                        corazon.textContent =
-                            Math.random() > 0.5
-                                ? "♥"
-                                : "♡";
+                    corazon.textContent =
+                        Math.random() > .5 ? "♥" : "♡";
 
+                    corazon.style.left =
+                        Math.random() * 100 + "vw";
 
-                        corazon.style.left =
-                            Math.random() * 90 + "%";
+                    corazon.style.bottom =
+                        "15%";
 
-                        corazon.style.bottom =
-                            "20%";
+                    corazon.style.fontSize =
+                        18 + Math.random() * 25 + "px";
 
+                    document.body.appendChild(corazon);
 
-                        document.body.appendChild(
-                            corazon
-                        );
+                    setTimeout(() => {
+                        corazon.remove();
+                    }, 1800);
 
-
-                        setTimeout(
-                            () => {
-                                corazon.remove();
-                            },
-                            1400
-                        );
-
-                    },
-                    i * 100
-                );
+                }, i * 80);
 
             }
 
         }
 
+        /* INICIAR */
 
-        /* =====================================
-           INICIAR
-        ===================================== */
-
-        mostrarCartas();
+        crearFondo();
 
     </script>
 
